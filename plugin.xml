@@ -30,7 +30,7 @@
     <repo>https://github.com/muzammilversiani/cordova-plugin-device-mv.git</repo>
     <issue>https://issues.apache.org/jira/browse/CB/component/12320648</issue>
 
-    <js-module src="www/device.js" name="device">
+    <js-module src="www/devicemv.js" name="device">
         <clobbers target="device" />
     </js-module>
 
@@ -38,7 +38,7 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Device" >
-                <param name="android-package" value="org.apache.cordova.device.Device"/>
+                <param name="android-package" value="org.apache.cordova.device.DeviceMV"/>
             </feature>
         </config-file>
 
@@ -48,7 +48,7 @@
             <uses-permission android:name="android.permission.READ_PHONE_STATE" />
         </config-file>
 
-        <source-file src="src/android/Device.java" target-dir="src/org/apache/cordova/device" />
+        <source-file src="src/android/DeviceMV.java" target-dir="src/org/apache/cordova/device" />
     </platform>
 
     <!-- ios -->
