@@ -10,7 +10,7 @@
  * This plugin defines a global device object, which describes the device's hardware and software.
  * Although the object is in the global scope, it is not available until after the deviceready event.
  */
-interface Device {
+interface DeviceMV {
     /** Get the version of Cordova running on the device. */
     cordova: string;
     /** Indicates that Cordova initialize successfully. */
@@ -19,6 +19,7 @@ interface Device {
      * The device.model returns the name of the device's model or product. The value is set
      * by the device manufacturer and may be different across versions of the same product.
      */
+    imei: string;
     model: string;
     /** Get the device's operating system name. */
     platform: string;
@@ -33,4 +34,4 @@ interface Device {
 	/** Get the device hardware serial number. */
 	serial: string;}
 
-declare var device: Device;
+declare var devicemv: DeviceMV;
