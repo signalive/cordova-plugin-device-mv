@@ -37,7 +37,7 @@
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Device" >
+            <feature name="DeviceMV" >
                 <param name="android-package" value="org.apache.cordova.device.DeviceMV"/>
             </feature>
         </config-file>
