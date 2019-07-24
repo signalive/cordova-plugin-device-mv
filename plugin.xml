@@ -23,15 +23,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-device-mv"
     version="2.0.3">
-    <name>Device</name>
+    <name>DeviceMV</name>
     <description>Cordova Device Plugin with MAC Address and IMEI Number</description>
     <license>Apache 2.0</license>
     <keywords>cordova,device</keywords>
     <repo>https://github.com/muzammilversiani/cordova-plugin-device-mv.git</repo>
     <issue>https://issues.apache.org/jira/browse/CB/component/12320648</issue>
 
-    <js-module src="www/devicemv.js" name="device">
-        <clobbers target="device" />
+    <js-module src="www/devicemv.js" name="devicemv">
+        <clobbers target="devicemv" />
     </js-module>
 
     <!-- android -->
@@ -50,50 +50,7 @@
 
         <source-file src="src/android/DeviceMV.java" target-dir="src/org/apache/cordova/device" />
     </platform>
-
-    <!-- ios -->
-    <platform name="ios">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Device">
-                <param name="ios-package" value="CDVDevice"/>
-            </feature>
-        </config-file>
-
-        <header-file src="src/ios/CDVDevice.h" />
-        <source-file src="src/ios/CDVDevice.m" />
-    </platform>
-
-    <!-- windows -->
-    <platform name="windows">
-        <js-module src="src/windows/DeviceProxy.js" name="DeviceProxy">
-            <runs />
-        </js-module>
-    </platform>
-
-    <!-- browser -->
-    <platform name="browser">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Device">
-                <param name="browser-package" value="Device" />
-            </feature>
-        </config-file>
-
-        <js-module src="src/browser/DeviceProxy.js" name="DeviceProxy">
-            <runs />
-        </js-module>
-    </platform>
-
-    <!-- osx -->
-    <platform name="osx">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Device">
-                <param name="ios-package" value="CDVDevice"/>
-            </feature>
-        </config-file>
-
-        <header-file src="src/osx/CDVDevice.h" />
-        <source-file src="src/osx/CDVDevice.m" />
-    </platform>
+ 
 
 
 </plugin>
