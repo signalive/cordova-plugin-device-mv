@@ -2,15 +2,11 @@
   "name": "cordova-plugin-device-mv",
   "version": "2.0.3",
   "description": "Cordova Device Plugin with MAC and IMEI",
-  "types": "./types/index.d.ts",
+  "types": "./types/indexmv.d.ts",
   "cordova": {
     "id": "cordova-plugin-device-mv",
     "platforms": [
-      "android",
-      "ios",
-      "windows",
-      "browser",
-      "osx"
+      "android" 
     ]
   },
   "repository": {
@@ -24,11 +20,7 @@
     "cordova",
     "device",
     "ecosystem:cordova",
-    "cordova-android",
-    "cordova-ios",
-    "cordova-windows",
-    "cordova-browser",
-    "cordova-osx"
+    "cordova-android" 
   ],
   "scripts": {
     "test": "npm run eslint",
