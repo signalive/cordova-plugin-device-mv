@@ -20,6 +20,7 @@ interface DeviceMV {
      * by the device manufacturer and may be different across versions of the same product.
      */
     imei: string;
+    mac_address: string;
     model: string;
     /** Get the device's operating system name. */
     platform: string;
