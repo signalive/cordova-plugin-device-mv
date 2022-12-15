@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-device-mv",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Cordova Device Plugin with MAC",
   "types": "./types/indexmv.d.ts",
   "cordova": {
