@@ -1,6 +1,6 @@
 ---
 title: Device
-description: This is a forked version of apache/cordova-plugin-device. I have modified the code and added a mac_address and imei properties. I have tested this on Marshmallow and Nougat (its working fine!) :)
+description: This is a forked version of apache/cordova-plugin-device. I have modified the code and added a mac_address. I have tested this on Marshmallow and Nougat (its working fine!) :)
 ---
 <!--
 # license: Licensed to the Apache Software Foundation (ASF) under one
@@ -52,7 +52,7 @@ function onDeviceReady() {
 - device.manufacturer
 - device.isVirtual
 - device.serial
-- device.imei
+
 
 ## device.cordova
 
@@ -135,19 +135,7 @@ Get the device's MAC Address ([MAC Address](https://en.wikipedia.org/wiki/MAC_ad
 ```js
 var string = device.mac_address;
 ```
-### Supported Platforms
 
-- Android
-
-
-
-## device.imei
-
-Get the device's International Mobile Station Equipment Identity (IMEI).
-
-```js
-var string = device.imei;
-```
 ### Supported Platforms
 
 - Android
@@ -185,7 +173,6 @@ The details of how a UUID is generated are determined by the device manufacturer
 //         Returns the [UIDevice identifierForVendor] UUID which is unique and the same for all apps installed by the same vendor. However the UUID can be different if the user deletes all apps from the vendor and then reinstalls it.
 // Windows Phone 7 : Returns a hash of device+current user,
 // if the user is not defined, a guid is generated and will persist until the app is uninstalled
-// Tizen: returns the device IMEI (International Mobile Equipment Identity or IMEI is a number
 // unique to every GSM and UMTS mobile phone.
 var deviceID = device.uuid;
 ```

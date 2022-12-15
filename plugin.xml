@@ -24,7 +24,7 @@
     id="cordova-plugin-device-mv"
     version="2.0.3">
     <name>DeviceMV</name>
-    <description>Cordova Device Plugin with MAC Address and IMEI Number</description>
+    <description>Cordova Device Plugin with MAC Address</description>
     <license>Apache 2.0</license>
     <keywords>cordova,device</keywords>
     <repo>https://github.com/muzammilversiani/cordova-plugin-device-mv.git</repo>

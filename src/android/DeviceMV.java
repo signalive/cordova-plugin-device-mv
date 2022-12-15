@@ -20,7 +20,6 @@ package org.apache.cordova.device;
 
 import java.util.TimeZone;
 
-import android.telephony.TelephonyManager;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -43,10 +42,9 @@ import android.net.wifi.WifiManager;
 public class DeviceMV extends CordovaPlugin {
     public static final String TAG = "DeviceMV";
 
-    public static String platform;                            // Device OS
-    public static String uuid;                                // Device UUID
-    public static String macAddress;                          // Device MacAddress
-    public static String imei; // Device IMEI
+    public static String platform; // Device OS
+    public static String uuid; // Device UUID
+    public static String macAddress; // Device MacAddress
 
     private static final String ANDROID_PLATFORM = "Android";
     private static final String AMAZON_PLATFORM = "amazon-fireos";
@@ -69,23 +67,22 @@ public class DeviceMV extends CordovaPlugin {
         super.initialize(cordova, webView);
         DeviceMV.uuid = getUuid();
         DeviceMV.macAddress = getMacAddress();
-        DeviceMV.imei = getImei();
     }
 
     /**
      * Executes the request and returns PluginResult.
      *
-     * @param action            The action to execute.
-     * @param args              JSONArry of arguments for the plugin.
-     * @param callbackContext   The callback id used when calling back into JavaScript.
-     * @return                  True if the action was valid, false if not.
+     * @param action          The action to execute.
+     * @param args            JSONArry of arguments for the plugin.
+     * @param callbackContext The callback id used when calling back into
+     *                        JavaScript.
+     * @return True if the action was valid, false if not.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("getDeviceInfo".equals(action)) {
             JSONObject r = new JSONObject();
             r.put("uuid", DeviceMV.uuid);
             r.put("mac_address", DeviceMV.macAddress);
-            r.put("imei", DeviceMV.imei);
             r.put("version", this.getOSVersion());
             r.put("platform", this.getPlatform());
             r.put("model", this.getModel());
@@ -93,16 +90,15 @@ public class DeviceMV extends CordovaPlugin {
             r.put("isVirtual", this.isVirtual());
             r.put("serial", this.getSerialNumber());
             callbackContext.success(r);
-        }
-        else {
+        } else {
             return false;
         }
         return true;
     }
 
-    //--------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
     // LOCAL METHODS
-    //--------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
 
     /**
      * Get the OS name.
@@ -126,27 +122,29 @@ public class DeviceMV extends CordovaPlugin {
      */
     public String getMacAddress() {
         // String macAddress = null;
-        // WifiManager wm = (WifiManager) this.cordova.getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        // WifiManager wm = (WifiManager)
+        // this.cordova.getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         // macAddress = wm.getConnectionInfo().getMacAddress();
-        //  if (macAddress == null || macAddress.length() == 0) {
-        //     macAddress = "00:00:00:00:00:00";
+        // if (macAddress == null || macAddress.length() == 0) {
+        // macAddress = "00:00:00:00:00:00";
         // }
         // return macAddress;
         try {
             List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
             for (NetworkInterface nif : all) {
-                if (!nif.getName().equalsIgnoreCase("wlan0")) continue;
- 
+                if (!nif.getName().equalsIgnoreCase("wlan0"))
+                    continue;
+
                 byte[] macBytes = nif.getHardwareAddress();
                 if (macBytes == null) {
                     return "";
                 }
- 
+
                 StringBuilder res1 = new StringBuilder();
                 for (byte b : macBytes) {
                     res1.append(Integer.toHexString(b & 0xFF) + ":");
                 }
- 
+
                 if (res1.length() > 0) {
                     res1.deleteCharAt(res1.length() - 1);
                 }
@@ -163,21 +161,9 @@ public class DeviceMV extends CordovaPlugin {
      * @return
      */
     public String getUuid() {
-        String uuid = Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        String uuid = Settings.Secure.getString(this.cordova.getActivity().getContentResolver(),
+                android.provider.Settings.Secure.ANDROID_ID);
         return uuid;
-    }
-
-    /**
-     * Get the device's International Mobile Station Equipment Identity (IMEI).
-     *
-     * @param context The context of the main Activity.
-     * @return
-     */
-    public String getImei() {
-        Context context = this.cordova.getActivity().getApplicationContext();
-        final TelephonyManager mTelephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String imei = mTelephony.getDeviceId();
-        return imei;
     }
 
     public String getModel() {
@@ -234,8 +220,8 @@ public class DeviceMV extends CordovaPlugin {
     }
 
     public boolean isVirtual() {
-    return android.os.Build.FINGERPRINT.contains("generic") ||
-        android.os.Build.PRODUCT.contains("sdk");
+        return android.os.Build.FINGERPRINT.contains("generic") ||
+                android.os.Build.PRODUCT.contains("sdk");
     }
 
 }
