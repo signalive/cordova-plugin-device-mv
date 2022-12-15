@@ -34,43 +34,7 @@ channel.waitForInitialization('onCordovaInfoReady');
  * phone, etc.
  * @constructor
  */
-function DeviceMV () {
-    this.available = false;
-    this.platform = null;
-    this.version = null;
-    this.uuid = null;
-    this.cordova = null;
-    this.model = null;
-    this.manufacturer = null;
-    this.isVirtual = null;
-    this.serial = null;
-    this.mac_address = null;
-
-    var me = this;
-
-    channel.onCordovaReady.subscribe(function () {
-        me.getInfo(function (info) {
-            // ignoring info.cordova returning from native, we should use value from cordova.version defined in cordova.js
-            // TODO: CB-5105 native implementations should not return info.cordova
-            var buildLabel = cordova.version;
-            me.available = true;
-            me.platform = info.platform;
-            me.version = info.version;
-            me.uuid = info.uuid;
-            me.mac_address = info.mac_address ? info.mac_address : '';
-            me.cordova = buildLabel;
-            me.model = info.model;
-            me.isVirtual = info.isVirtual;
-            me.manufacturer = info.manufacturer || 'unknown';
-            me.serial = info.serial || 'unknown';
-            channel.onCordovaInfoReady.fire();
-        }, function (e) {
-            me.available = false;
-            utils.alert('[ERROR] Error initializing Cordova: ' + e);
-        });
-    });
-}
-
+function DeviceMV() {}
 /**
  * Get device info
  *
