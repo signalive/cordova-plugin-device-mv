@@ -43,8 +43,6 @@ public class DeviceMV extends CordovaPlugin {
     public static final String TAG = "DeviceMV";
 
     public static String platform; // Device OS
-    public static String uuid; // Device UUID
-    public static String macAddress; // Device MacAddress
 
     private static final String ANDROID_PLATFORM = "Android";
     private static final String AMAZON_PLATFORM = "amazon-fireos";
@@ -65,8 +63,6 @@ public class DeviceMV extends CordovaPlugin {
      */
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        DeviceMV.uuid = getUuid();
-        DeviceMV.macAddress = getMacAddress();
     }
 
     /**
@@ -81,8 +77,8 @@ public class DeviceMV extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("getDeviceInfo".equals(action)) {
             JSONObject r = new JSONObject();
-            r.put("uuid", DeviceMV.uuid);
-            r.put("mac_address", DeviceMV.macAddress);
+            r.put("uuid", this.getUuid());
+            r.put("mac_address", this.getMacAddress());
             r.put("version", this.getOSVersion());
             r.put("platform", this.getPlatform());
             r.put("model", this.getModel());
