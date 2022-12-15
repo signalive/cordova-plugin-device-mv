@@ -120,39 +120,34 @@ public class DeviceMV extends CordovaPlugin {
      *
      * @return
      */
-    public String getMacAddress() {
-        // String macAddress = null;
-        // WifiManager wm = (WifiManager)
-        // this.cordova.getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        // macAddress = wm.getConnectionInfo().getMacAddress();
-        // if (macAddress == null || macAddress.length() == 0) {
-        // macAddress = "00:00:00:00:00:00";
-        // }
-        // return macAddress;
+    public List<JSONObject> getMacAddress() {
+        List<JSONObject> states = new ArrayList<JSONObject>();
         try {
             List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
             for (NetworkInterface nif : all) {
-                if (!nif.getName().equalsIgnoreCase("wlan0"))
-                    continue;
 
+                String macAddress = "";
                 byte[] macBytes = nif.getHardwareAddress();
-                if (macBytes == null) {
-                    return "";
-                }
+                if (macBytes != null) {
+                    StringBuilder res1 = new StringBuilder();
+                    for (byte b : macBytes) {
+                        res1.append(Integer.toHexString(b & 0xFF) + ":");
+                    }
 
-                StringBuilder res1 = new StringBuilder();
-                for (byte b : macBytes) {
-                    res1.append(Integer.toHexString(b & 0xFF) + ":");
+                    if (res1.length() > 0) {
+                        res1.deleteCharAt(res1.length() - 1);
+                    }
+                    macAddress = res1.toString();
                 }
-
-                if (res1.length() > 0) {
-                    res1.deleteCharAt(res1.length() - 1);
-                }
-                return res1.toString();
+                JSONObject macState = new JSONObject();
+                macState.put("name", nif.getDisplayName());
+                macState.put("mac", macAddress);
+                macState.put("additionalData", nif.toString());
+                states.add(macState);
             }
         } catch (Exception ex) {
         }
-        return "02:00:00:00:00:00";
+        return states;
     }
 
     /**
